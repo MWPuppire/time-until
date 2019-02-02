@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url(press-start.woff2) format('woff2');
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: 'Press Start 2P';
+}
+
+body::before, body::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+}
+
+body::before {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #111519;
+}
+
+#main {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  text-align: center;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+#add {
+  left: 5%;
+  top: 5%;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+}
+
+#remove {
+  right: 5%;
+  top: 5%;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+}
