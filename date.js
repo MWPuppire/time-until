@@ -149,10 +149,9 @@ function main () {
   var dd = date.getDate()
   var mm = date.getMonth() + 1
   var div = document.getElementById('main')
+  div.innerHTML = ''
   for (var i = 0; i < TARGETS.length; i++) {
-    if (i === 0) {
-      div.innerHTML = ''
-    } else {
+    if (i !== 0) {
       div.innerHTML += '<br><hr><br>'
     }
     var targetDay = TARGETS[i]
