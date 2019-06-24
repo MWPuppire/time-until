@@ -8,17 +8,6 @@ var TARGETS = [
 var TITLES = {
 
 }
-/* OPTIONAL BIRTHDAY CONFIGURATION */
-/* ANY BIRTHDAY HAS TO BE A TARGET */
-var BIRTHDAYS = [
-
-]
-var YEARS = {
-
-}
-var NAMES = {
-
-}
 
 /*  CODE - DO NOT EDIT BEYOND HERE */
 
@@ -98,48 +87,27 @@ function prettyMS (m) {
 
 function remove (name) {
   TARGETS = TARGETS.filter(function (el) { return el !== name })
-  BIRTHDAYS = BIRTHDAYS.filter(function (el) { return el !== name })
   delete TITLES[name]
-  delete YEARS[name]
-  delete NAMES[name]
 }
 
 function btnRemove () {
-  var date = prompt('What day? ("day/month" format)')
+  var date = prompt('What day? ("month/day" format)')
   remove(date)
 }
 
 document.getElementById('remove').onclick = btnRemove
 
-function add (date, birthday, title, name) {
+function add (date, title) {
   TARGETS.push(date)
-  if (birthday) {
-    BIRTHDAYS.push(date)
-    if (title) {
-      YEARS[date] = title
-    }
-    if (name) {
-      NAMES[date] = name
-    }
-  } else {
-    if (title) {
-      TITLES[date] = title
-    }
+  if (title) {
+    TITLES[date] = title
   }
 }
 
 function btnAdd () {
-  var date = prompt('What day? ("day/month" format)')
-  var birthday = /^(?:y|yes|true|1)$/i.test(prompt('Is it a birthday?'))
-  var title = ''
-  var name = ''
-  if (birthday) {
-    title = prompt('What year was the birth?')
-    name = prompt('What is the name?')
-  } else {
-    title = prompt('What is the title (if any)?')
-  }
-  add(date, birthday, title, name)
+  var date = prompt('What day? ("month/day" format)')
+  var title = prompt('What is the title (if any)?')
+  add(date, title)
 }
 
 document.getElementById('add').onclick = btnAdd
@@ -165,80 +133,36 @@ function main () {
     var today = `${mm}/${dd}/${year}`
     var fullTargetDay = targetDay + '/' + year
     var target = new Date(fullTargetDay)
-    var birthday = BIRTHDAYS.indexOf(targetDay) !== -1
-    if (birthday) {
-      var difYear = (YEARS[targetDay]
-        ? year - YEARS[targetDay]
-        : false)
-      if (today === fullTargetDay) {
-        div.innerHTML +=
-          'It is ' +
-          days[target.getDay()] +
-          ', ' +
-          months[target.getMonth()] +
-          ' ' +
-          suffix(target.getDate()) +
-          ', ' +
-          target.getFullYear() +
-          (NAMES[targetDay]
-            ? ', ' + NAMES[targetDay] + (difYear
-              ? ' ' + suffix(difYear) + ' birthday.'
-              : ' birthday.'
-            )
-            : '.'
-          )
-      } else {
-        div.innerHTML +=
-          'It is ' +
-          prettyMS(Math.abs(date.getTime() - target.getTime())) +
-          ' until ' +
-          days[target.getDay()] +
-          ', ' +
-          months[target.getMonth()] +
-          ' ' +
-          suffix(target.getDate()) +
-          ', ' +
-          target.getFullYear() +
-          (NAMES[targetDay]
-            ? ', ' + NAMES[targetDay] + (difYear
-              ? "'s " + suffix(difYear) + ' birthday.'
-              : ' birthday.'
-            )
-            : '.'
-          )
-      }
+    if (today === fullTargetDay) {
+      div.innerHTML +=
+        'It is ' +
+        days[target.getDay()] +
+        ', ' +
+        months[target.getMonth()] +
+        ' ' +
+        suffix(target.getDate()) +
+        ', ' +
+        target.getFullYear() +
+        (TITLES[targetDay]
+          ? ', which is ' + TITLES[targetDay] + '.'
+          : '.'
+        )
     } else {
-      if (today === fullTargetDay) {
-        div.innerHTML +=
-          'It is ' +
-          days[target.getDay()] +
-          ', ' +
-          months[target.getMonth()] +
-          ' ' +
-          suffix(target.getDate()) +
-          ', ' +
-          target.getFullYear() +
-          (TITLES[targetDay]
-            ? ', which is ' + TITLES[targetDay] + '.'
-            : '.'
-          )
-      } else {
-        div.innerHTML +=
-          'It is ' +
-          prettyMS(Math.abs(date.getTime() - target.getTime())) +
-          ' until ' +
-          days[target.getDay()] +
-          ', ' +
-          months[target.getMonth()] +
-          ' ' +
-          suffix(target.getDate()) +
-          ', ' +
-          target.getFullYear() +
-          (TITLES[targetDay]
-            ? ', which is ' + TITLES[targetDay] + '.'
-            : '.'
-          )
-      }
+      div.innerHTML +=
+        'It is ' +
+        prettyMS(Math.abs(date.getTime() - target.getTime())) +
+        ' until ' +
+        days[target.getDay()] +
+        ', ' +
+        months[target.getMonth()] +
+        ' ' +
+        suffix(target.getDate()) +
+        ', ' +
+        target.getFullYear() +
+        (TITLES[targetDay]
+          ? ', which is ' + TITLES[targetDay] + '.'
+          : '.'
+        )
     }
   }
 }
