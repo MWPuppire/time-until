@@ -16,7 +16,7 @@
   var data = localStorage.getItem('time-targets')
   try {
     var parsed = JSON.parse(data)
-    TARGETS = Object.create(parsed.TARGETS, TARGETS)
+    TARGETS = parsed.TARGETS.concat(TARGETS).filter((x, i, arr) => arr.lastIndexOf(x) === i)
     TITLES = Object.create(parsed.TITLES, TITLES)
   } catch (e) { }
 
