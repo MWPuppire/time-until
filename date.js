@@ -146,6 +146,9 @@
       if (today === fullTargetDay) {
         div.innerHTML +=
           'It is ' +
+          (TITLES[targetDay]
+            ? TITLES[targetDay] + ' on '
+            : '')
           days[target.getDay()] +
           ', ' +
           months[target.getMonth()] +
@@ -153,15 +156,15 @@
           suffix(target.getDate()) +
           ', ' +
           target.getFullYear() +
-          (TITLES[targetDay]
-            ? ', which is ' + TITLES[targetDay] + '.'
-            : '.'
-          )
+          '.'
       } else {
         div.innerHTML +=
           'It is ' +
           prettyMS(Math.abs(date.getTime() - target.getTime())) +
           ' until ' +
+          (TITLES[targetDay]
+            ? TITLES[targetDay] + ' on '
+            : '')
           days[target.getDay()] +
           ', ' +
           months[target.getMonth()] +
@@ -169,10 +172,7 @@
           suffix(target.getDate()) +
           ', ' +
           target.getFullYear() +
-          (TITLES[targetDay]
-            ? ', which is ' + TITLES[targetDay] + '.'
-            : '.'
-          )
+          '.'
       }
     }
   }
