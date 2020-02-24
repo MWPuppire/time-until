@@ -122,7 +122,7 @@
   document.getElementById('add').onclick = btnAdd
 
   function main () {
-    localStorage.setItem('time-targets', JSON.parse({ TARGETS: TARGETS, TITLES: TITLES }))
+    localStorage.setItem('time-targets', JSON.stringify({ TARGETS: TARGETS, TITLES: TITLES }))
     var date = new Date()
     var dd = date.getDate()
     var mm = date.getMonth() + 1
