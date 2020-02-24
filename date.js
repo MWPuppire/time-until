@@ -14,11 +14,11 @@
   /*  CODE - DO NOT EDIT BEYOND HERE */
 
   var data = localStorage.getItem('time-targets')
-  if (data) {
+  try {
     var parsed = JSON.parse(data)
     TARGETS = Object.create(parsed.TARGETS, TARGETS)
     TITLES = Object.create(parsed.TITLES, TITLES)
-  }
+  } catch (e) { }
 
   var days = [
     'Sunday',
