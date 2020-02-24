@@ -148,7 +148,7 @@
           'It is ' +
           (TITLES[targetDay]
             ? TITLES[targetDay] + ' on '
-            : '')
+            : '') +
           days[target.getDay()] +
           ', ' +
           months[target.getMonth()] +
@@ -164,7 +164,7 @@
           ' until ' +
           (TITLES[targetDay]
             ? TITLES[targetDay] + ' on '
-            : '')
+            : '') +
           days[target.getDay()] +
           ', ' +
           months[target.getMonth()] +
