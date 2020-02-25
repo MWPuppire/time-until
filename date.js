@@ -101,7 +101,9 @@
 
   function btnRemove () {
     var date = prompt('What day? ("month/day" format)')
-    remove(date)
+    if (date) {
+      remove(date)
+    }
   }
 
   document.getElementById('remove').onclick = btnRemove
@@ -116,7 +118,9 @@
   function btnAdd () {
     var date = prompt('What day? ("month/day" format)')
     var title = prompt('What is the title (if any)?')
-    add(date, title)
+    if (date) {
+      add(date, title)
+    }
   }
 
   document.getElementById('add').onclick = btnAdd
